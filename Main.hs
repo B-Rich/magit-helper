@@ -1,14 +1,12 @@
 module Main where
 
-import Control.Lens
-import Control.Logging
+import Control.Magit
 import Control.Monad
+import Control.Monad.IO.Class
 import Control.Monad.Trans.Reader
-import Data.Thyme
 import Options.Applicative
 --import Options.Applicative.Types (ReadM(..))
 import Prelude hiding (log)
-import System.Environment
 
 version :: String
 version = "0.0.1"
@@ -55,4 +53,4 @@ main = execParser opts >>= runReaderT main'
                  <> header "hours - show hours worked so far")
 
 main' :: App ()
-main' = undefined
+main' = liftIO magitCommandLoop
